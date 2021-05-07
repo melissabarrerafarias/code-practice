@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Nasa Data Grabbing</title>
+</head>
+<body>
+    <h1>Global Average Temperatures 1880-2018</h1>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    
+    <script>
+        // the following code is from 'the coding train's tutorial on tabular data -
+        // in his series of 'Working With Data $ APIs JavaScript
+        // I am using this file as personal practice 
+
+        getData(); 
+
+        async function getData() {
+           const response = await fetch('ZonAnn.Ts+dSST.csv'); 
+           const data = await response.text(); // raw text
+           console.log(data); 
+
+           const table = data.split('\n').slice(1); // split into array, each item being a line in the array
+           table.forEach(row => {
+            const column = row.split(','); // split it up by commas
+            const year = column[0]; 
+            const temp = column[1];
+            console.log(year, temp);
+           })
+        //    console.log(rows)
+           
+        }
+       
+
+
+    </script>
+</body>
+</html>
